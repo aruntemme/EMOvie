@@ -3,7 +3,7 @@ import cv2
 import numpy as np
 
 
-dataset_path = 'fer2013/fer2013/fer2013.csv'
+dataset_path = 'dataset/fer2013/fer2013.csv'
 image_size=(48,48)
 
 def load_fer2013():

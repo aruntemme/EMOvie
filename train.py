@@ -1,16 +1,13 @@
-"""
-Description: Train emotion classification model
-"""
 
 from keras.callbacks import CSVLogger, ModelCheckpoint, EarlyStopping
 from keras.callbacks import ReduceLROnPlateau
 from keras.preprocessing.image import ImageDataGenerator
-from load_and_process import load_fer2013
-from load_and_process import preprocess_input
+from run import load_dataset
+from run import preprocess_input
 from models.cnn import mini_XCEPTION
 from sklearn.model_selection import train_test_split
 
-# parameters
+
 batch_size = 32
 num_epochs = 10000
 input_shape = (48, 48, 1)
@@ -53,7 +50,7 @@ model_checkpoint = ModelCheckpoint(model_names, 'val_loss', verbose=1,
 callbacks = [model_checkpoint, csv_logger, early_stop, reduce_lr]
 
 # loading dataset
-faces, emotions = load_fer2013()
+faces, emotions = load_dataset()
 faces = preprocess_input(faces)
 num_samples, num_classes = emotions.shape
 xtrain, xtest,ytrain,ytest = train_test_split(faces, emotions,test_size=0.2,shuffle=True)
